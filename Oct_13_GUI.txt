@@ -1,0 +1,69 @@
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class InclassGUI extends JFrame {
+	
+	private JTextField input;
+	private JTextField finalResult;
+	private JLabel instructions1;
+	private JLabel instructions2;
+	private JButton convertButton;
+	
+	public InclassGUI() {	
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(400, 125);
+		this.setLayout(new FlowLayout());
+		input = new JTextField();
+		
+		instructions1 = new JLabel("Insert your value in Km below.");
+		instructions2 = new JLabel("Press the button to convert the value to miles!");
+		input = new JTextField(10);
+		convertButton = new JButton("Convert");
+		convertButton.addActionListener(new TranslateListener());
+		finalResult = new JTextField(10);
+		finalResult.setEditable(false);
+		
+		this.add(instructions1);
+		this.add(instructions2);
+		this.add(input);
+		this.add(convertButton);
+		this.add(finalResult);
+		
+		
+		
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		
+	}
+	
+	private class TranslateListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			String word = input.getText();
+			finalResult.setText(toMiles(word));
+			
+		}
+	
+	public String toMiles(String word) {
+		double kilometers = Double.parseDouble(word);
+		double miles = (kilometers / 1.609344);
+		double finality = Math.pow(10, 3);
+		miles = Math.round(miles * finality) / finality;
+		return miles + "";
+		
+	}
+	
+
+}
+	public static void main(String[] args) {
+		new InclassGUI();
+	}	
+}

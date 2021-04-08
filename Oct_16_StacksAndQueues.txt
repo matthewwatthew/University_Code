@@ -1,0 +1,75 @@
+import java.util.Queue;
+import java.util.Stack;
+
+/*
+Name: Matthew Jordan
+Computing ID: Mrj3dd
+
+
+WAS UNABLE TO FINISH BEFORE CLASS, WAS UNABLE TO GET THE REMOVE() TO WORK, AND WAS STILL TWEAKING THE ADD();
+*/
+
+
+public class QueueInClass {
+
+	final int INITIAL_SIZE = 10;
+	int x = INITIAL_SIZE;
+	static String[] elements;
+	int currentSize, head, tail, i;
+	
+	public QueueInClass(){
+		this.elements = new String[this.INITIAL_SIZE];
+		this.currentSize = this.head = this.tail = 0;
+	}
+	
+	public void add(String s) {
+		growIfNecessary();
+		while(x != 0) {
+			x--;
+			if(x-1 == -1) {
+				break;
+			}
+			elements[x] = elements[x-1];
+			elements[head] = s;
+			
+	}
+		x = INITIAL_SIZE;
+		tail++;
+	}	
+		
+	public String remove(){
+		if (tail == 0) {
+			return null;
+		}
+		tail --;
+		return elements[tail];
+	    
+	}
+	
+	private void growIfNecessary(){
+		if(currentSize == elements.length){
+			String[] newElements = new String[2*elements.length];
+			for(int i = 0; i < elements.length; i++){
+				newElements[i] = elements[(head+i)%elements.length];
+			}
+			elements = newElements;
+			head = 0;
+			tail = currentSize;
+		}
+	}
+	
+	public static void main(String[] args) {
+		QueueInClass q = new QueueInClass();
+		q.add("Lorna");
+		q.add("Sandy");
+		q.add("Lucus");
+		q.add("Zach");
+		q.remove();
+		q.remove();
+		for (String element: elements) {
+			System.out.println(element);
+		}
+
+	}
+
+}

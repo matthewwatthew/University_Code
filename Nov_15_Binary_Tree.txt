@@ -1,0 +1,46 @@
+import javax.xml.soap.Node;
+
+public class ConnectNodes {
+	public BinaryTree<Integer> tree;
+	public static BinaryTreeNode<Integer> one;
+	public BinaryTreeNode<Integer> two;
+	public BinaryTreeNode<Integer> three;
+	public BinaryTreeNode<Integer> four;
+	public BinaryTreeNode<Integer> five;
+	public BinaryTreeNode<Integer> six;
+	public BinaryTreeNode<Integer> seven;
+	public BinaryTreeNode<Integer> eight;
+	
+	public static void ConnectNodes() {
+		BinaryTree<Integer> tree = new BinaryTree<Integer>();
+		BinaryTreeNode<Integer> one = new BinaryTreeNode<Integer>(1);
+		one.setData(1);
+		tree.setRoot(one);
+		BinaryTreeNode<Integer> two = new BinaryTreeNode<Integer>(2);
+		two.setData(2);
+		BinaryTreeNode<Integer> three = new BinaryTreeNode<Integer>(3);
+		three.setData(3);
+		BinaryTreeNode<Integer> four = new BinaryTreeNode<Integer>(4);
+		four.setData(4);
+		BinaryTreeNode<Integer> five = new BinaryTreeNode<Integer>(5);
+		five.setData(5);
+		BinaryTreeNode<Integer> six = new BinaryTreeNode<Integer>(6);
+		six.setData(6);
+		BinaryTreeNode<Integer> seven = new BinaryTreeNode<Integer>(7);
+		seven.setData(7);
+		BinaryTreeNode<Integer> eight = new BinaryTreeNode<Integer>(8);
+		eight.setData(8);
+		
+		one.setLeft(two);
+		one.setRight(three);
+		two.setLeft(four);
+		two.setRight(five);
+		four.setLeft(six);
+		five.setLeft(seven);
+		five.setRight(eight);
+		System.out.println(one.postOrder());
+			}.
+	public static void main(String[] args) {
+		ConnectNodes();..
+	}
+}

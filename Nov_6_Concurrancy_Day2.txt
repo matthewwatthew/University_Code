@@ -1,0 +1,57 @@
+// Was unable to finish before class ended. 
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+   Counts how many words in a file.
+*/
+public class WordCountRunnable implements Runnable
+{
+   private String filename;
+   private static int threadCount;
+   private static int combinedWordCount;
+   private Lock threadsRunning;
+   private Condition decreaseWhenDone;
+   /**
+      Constructs a WordCountRunnable object with a file name.
+      @param aFilename the file name that needs to count words
+   */
+   public WordCountRunnable(String aFilename)
+   {
+      filename = aFilename;
+      threadsRunning = new ReentrantLock();
+      decreaseWhenDone = threadsRunning.newCondition();
+   }
+
+   public void run()
+   { int counter = 0;
+     threadCount = threadCount + 1;
+   	 threadsRunning.lock();
+      try {
+		Scanner scan = new Scanner(new FileInputStream(filename));
+		while (scan.hasNext()) {
+			scan.next();
+			counter = counter + 1;
+		}
+		System.out.println(filename + ": " + counter);
+		combinedWordCount = combinedWordCount + counter;
+		System.out.println(threadCount);
+	} catch (FileNotFoundException e) {
+		System.out.println("File Not Found!");
+	}
+      finally {
+    	  threadsRunning.unlock();
+    	  threadCount = threadCount - 1;
+      }
+   }
+   public int counter() {
+	   return combinedWordCount;
+   }
+}

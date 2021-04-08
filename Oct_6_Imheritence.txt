@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
+
+public class MyNewSet<T> extends ArrayList<T> implements Set<T> { //The extended ArrayList<T> already implements Set<>, has the missing methods.
+	public MyNewSet(){
+		super();
+	}
+	@Override
+	public boolean add(T args) {
+		if(this.contains(args) == false) {
+			super.add(args);
+			return true;
+		}
+		return false;
+		}
+	
+	@Override
+	public boolean addAll(Collection<? extends T> args) {
+		for(T element: args){
+			if (this.add(element) == false) {
+				continue;
+			}
+			else if (this.add(element) == true) {
+				super.add(element);
+				return true;
+			}
+		}
+		return false;
+	}
+// I would look over each element in the ArrayList Collection and not add any elements if they already existed within the Set.
+		
+	public static void main(String[] args) {
+		MyNewSet<String> test = new MyNewSet<String>();
+		String h = "Hello";
+		String n = "Hey";
+		String i = "Hello";
+		String g = "Goodbye";
+		test.add(h);
+		test.add(n);
+		test.add(i);
+		System.out.println(test);
+	
+		ArrayList<String> AL1= new ArrayList<String>();
+		AL1.add(g);
+		AL1.add(n);
+		test.addAll(AL1);
+		System.out.println(test); // This is not working properly, since there is a repeat of "Hey" within the Set.
+		
+		// It now only includes unique elements, so it is fixed!
+		
+	
+		
+	}
+
+}
