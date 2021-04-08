@@ -1,0 +1,13 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class testPerson {
+	
+	@Test
+	public void testPersonEquals() {
+		Person p1 = new Person("Matthew Jordan","1105 Juniper Drive", 12345);
+		Person p2 = new Person("Eric Chang", "1234 Sleepy Hallow Road", 12345);
+		assertTrue(p1.equals(p2));
+	}
+}

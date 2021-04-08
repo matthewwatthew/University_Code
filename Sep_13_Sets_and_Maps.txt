@@ -1,0 +1,45 @@
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
+
+public class SetsAndMapsActivity {
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	// PROBLEM SET #1 
+
+	public static Set<String> names(Set<String> sticky, Set<String> common) {
+		Set<String> commonNames = new HashSet<String>();
+		
+		for (String value: common) {
+			if (sticky.contains(value)) {
+				continue;
+			}
+			else {
+				commonNames.add(value);
+			}
+		}
+		
+		return commonNames;
+	}
+	
+	// PROBLEM SET #2
+	
+	
+public static Map<Integer, String> reverseBook(Map<String,Integer> phonebook) {
+	// pull all the keys, pull all the values. and switch them.
+	Set<Integer> phonebookNum = new HashSet<Integer>();
+	Map<Integer, String> finalMap = new HashMap<Integer, String>();
+	
+	for (String key : phonebook.keySet()) {
+		phonebookNum.add(phonebook.get(key));
+	}
+	for (String key : phonebook.keySet()) {
+		finalMap.put(phonebook.get(key), key); }
+
+	return finalMap;
+}
+}

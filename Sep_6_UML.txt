@@ -1,0 +1,45 @@
+public class microwave {
+	
+	/*Microwave UML Diagram
+
+	 Microwave
+	[- timerseconds: int
+	 - timerminute : int
+	 - doorclosed : boolean ]
+	 
+
+	[+ setTimer(minutes: int, seconds: int) : void
+	 + negativeTick(): void
+	 + displayTimer(): void
+ 	 + add30Seconds(): void
+	 + doorClosed(): void
+	 + popPopcorn(): void
+	 + defrostFood(): void ]
+	*/
+	
+	
+	private int timerSeconds;
+	private int timerminute;
+	private boolean doorClosed;
+ 
+ 
+	public microwave() {
+			timerSeconds = timerminute = 0;
+			doorClosed = false; 
+		
+		}
+	public void setTimer (int minutes, int seconds) {}
+ 
+	public void displayTimer() {}
+	
+	public void negativeTick() {}
+	
+	public void add30Seconds() {}
+	
+	public void doorClosed() {}
+	
+	public void popPopcorn() {}
+	
+	public void defrostFood() {}
+ 
+}

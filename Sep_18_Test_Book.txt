@@ -1,0 +1,29 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class testBook {
+	
+	@Test
+	public void testBookEquals() {
+		Book b1 = new Book("Harry Potter", "JK Rowling", 40, 12.50);
+		Book b3 = new Book("Unknown Title", "Unknown Author", 40, 12.50);
+		assertTrue(b1.equals(b3));  
+		}
+	@Test
+	public void testBookValue() {
+		Book b2 = new Book("Catcher and the Rye", "J.D Salinger", 124, 12.50);
+		assertTrue(b2.getBookValue() == 12.50);
+		
+	}
+	@Test
+	public void testBookGetAuthor() {
+		Book b4 = new Book("The Name of the Wind","Rothfuss", 345, 12.50);
+		assertTrue(b4.getAuthor() == "Rothfuss");
+	}
+	@Test
+	public void testBookGetTitle() {
+		Book b5 = new Book("Moby Dick","Melville",10, 12.50);
+		assertTrue(b5.getTitle() == "Moby Dick");
+	}
+}

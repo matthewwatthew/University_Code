@@ -1,0 +1,60 @@
+public class Circle {
+	private Point center;
+	private double radius;
+	
+	public Circle(Point center,double radius) {
+		this.center = center;
+		this.setRadius(radius);
+	}
+	
+	public static void main(String[] args) {
+		Point p1 = new Point(2.0,3.0);
+		Point p2 = new Point(2.0,3.0);
+		Point p3 = new Point(3.0,4.0);
+		
+		Circle c1 = new Circle(p1,2.0);
+		Circle c2 = new Circle(p2,2.0);
+		Circle c3 = new Circle(p3,2.0);
+		
+		System.out.println(c1.equals(c1));
+		System.out.println(c1.equals(c2));
+		System.out.println(c1.equals(c3));
+		
+				
+	}
+	
+	public String toString() {
+		return "<"+center+","+radius+">";
+	}
+	
+	@Override 
+	public boolean equals(Object o) {
+		Circle c1 = (Circle)o;
+		//System.out.println(this.center);
+		// System.out.println(c1.center);
+		return (this.center.getX() == c1.center.getX() && this.center.getY() == c1.center.getY() && this.radius == c1.radius);
+		
+	}
+	
+
+	public Point getCenter() {
+		return center;
+	}
+
+	public void setCenter(Point center) {
+		this.center = center;
+	}
+
+	public double getRadius() {
+		return radius;
+	}
+
+	public void setRadius(double radius) {
+		if (radius < 0) {
+			throw new RuntimeException("The radius cannot be negative.");
+		} else {
+			this.radius = radius;
+		}
+	}
+
+}

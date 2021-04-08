@@ -1,0 +1,120 @@
+// (Source 1) Used the following source for help rounding. http://www.baeldung.com/java-round-decimal-number
+
+import java.util.Arrays;
+import java.lang.Math;
+public class hw1 {
+
+	public static void main(String[] args) {
+		
+		System.out.println(pi(5)); // Used the pi method for 5 decimal places
+		// Returned 3.14159
+		System.out.println(pi(7)); // Used the pi method for 2 decimal places
+		// Returned 3.1415926
+		
+		
+		System.out.println(easter(2016)); // Used the easter method to determine the date of easter in 2016.
+		// Returned March 27
+		System.out.println(easter(1997)); // Used the easter method to determine the date of easter in 1997.
+		System.out.println(easter(2017)+ " should be April 16");
+		// Returned March 30
+		
+		
+		
+		System.out.println(escape(120007)); // Used the escape for 120007 mph.
+		// Returned "The astronaut will not return to Haley's Comet, the comet would need a mass larger than 1.2447629007868815 E26 to return
+		System.out.println(escape(7)); // Used the escape method for 7 mph.
+		// Returned "The astonaut will return to Haley's Comet."
+		
+		
+		System.out.println(Arrays.toString(random(12,23,60,67))); // Used the random number generator for the numbers 12, 23, 60, and 67.
+		// Returned [1, 16, 26, 55, 52, 50, 4, 18, 5, 41, 65, 14, 47, 2, 39, 19, 28, 34, 38, 63, 35, 61, 56, 8, 43, 0]
+		System.out.println(Arrays.toString(random(10,34,80,75))); // Used the random number generator for the numbers 10, 34, 80, and 75.
+		// Returned [45, 35, 70, 60, 20, 10, 45, 35, 70, 60, 20, 10, 45, 35, 70, 60, 20, 10, 45, 35, 70, 60, 20, 10, 45, 0] 
+	}
+	
+	
+	
+	
+	// Method 1
+	
+	public static double pi(int n) {
+		double finalValue = 0.0;
+		double value = 1.0;
+		double z = 3;
+		long r = 100000000;
+		for(double q = 1; r > q; q++) {
+			if (q % 2 != 0) {
+			value = value - (1/(z));
+			z = z+2;
+			}
+			else {
+				value = value + (1/(z));
+				z = z+2;
+			}
+			finalValue = value + 0; 
+		}
+		finalValue = finalValue * 4;
+		double finality = Math.pow(10, n); // Used Source 1 here
+		return Math.round(finalValue * finality) / finality ; // Used Source 1 here
+	}
+	
+	// Method 2 
+	
+	public static String easter(int y) {
+		int a = y % 19;
+		int b = y / 100;
+		int c = y % 100;
+		int d = b / 4;
+		int e = b % 4;
+		int g = (8 * b + 13)/ 25;
+		int h = (19 * a + b - d -g + 15) % 30;
+		int j = c / 4;
+		int k = c % 4;
+		int m = (a + 11 * h)/319;
+		int r = (2 * e + 2 * j -k -h + m + 32) % 7;
+		int n = (h- m + 90) / 25;
+		int p = (h-m+r+n+19) % 32;
+		if (n == 3) {
+		return ("March " + p);
+		}
+		else {
+			return ("April " + p);
+		}
+	}
+	
+	
+	// Method 3
+	
+	public static String escape(double v) {
+		double G = 0.0000000000667;
+		double M = 1.3 * (Math.pow(10.0, 22.0));
+		double R = 1.153 * (Math.pow(10.0, 6.0));		
+		
+		double meterPerSecondVelocity = Math.sqrt((2*(G*M))/R);
+		double mphVelocity = meterPerSecondVelocity * 2.23694;
+		
+		
+		double finalMass = ((v * v) * R) / (2 * G);
+		if (v < mphVelocity) {
+			return "The astronaut will return to Haley's Comet.";
+		}
+		else {
+			return ("The astronaut will not return to Haley's Comet, the comet would need a mass larger than " + finalMass + " to return");
+		}
+		
+	}
+	
+	// Method 4
+	
+	public static int[] random(int r, int a, int b, int m) {
+		int[] arrayRandom = new int[26];
+		int x = 0;
+		int newr = r;
+		while (x != 25) {
+			newr = (a * newr + b) % m;
+			arrayRandom[x] = newr;
+			x++;
+		}
+		return arrayRandom; 
+	}
+}
