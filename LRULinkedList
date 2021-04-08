@@ -1,0 +1,155 @@
+public class LRULinkedList {
+    public Node head;
+    public Node tail;
+    public int capacity = 0;
+    public int size = 0;
+
+    /**
+     * Constructor creates a double linked list with a single value.
+     */
+    public LRULinkedList(int capacity){
+        this.capacity = capacity;
+    }
+
+    /**
+     * Add a node to the linked list.
+     * @param key
+     * @param value
+     * @return new node
+     */
+    public Node add(int key, int value) {
+        Node noder = new Node(key,value);
+        if(this.head == null){
+            this.head = noder;
+            this.tail = noder;
+            this.head.next = null;
+            this.head.previous = null;
+            this.tail.next = null;
+            this.tail.previous = null;
+            this.size +=1;
+            if(this.size > this.capacity){
+                this.deleteTail();
+                this.size -=1;
+            }
+            return this.head;
+        }
+        if(this.size == 1){
+            this.head.next = noder;
+            this.head.previous = null;
+            noder.next = null;
+            noder.previous = this.head;
+            this.head = noder;
+            this.size +=1;
+            if(this.size > this.capacity){
+                this.deleteTail();
+                this.size -=1;
+            }
+            return this.head;
+        }
+        this.head.next = noder;
+        noder.next = null;
+        noder.previous = head;
+        this.head = noder;
+        this.size += 1;
+        if(this.size > this.capacity){
+            deleteTail();
+            this.size -=1;
+        }
+        return this.head;
+    }
+
+    /**
+     * Remove the last item in the linked list.
+     */
+    public void deleteTail(){
+        if(this.size == 0){
+            return;
+        }
+        if(this.size == 1){
+            this.head = null;
+            this.tail = null;
+            return;
+        }
+        tail = tail.next;
+        tail.previous = null;
+        return;
+    }
+
+    /**
+     * Get the node that corresponds to the passed in key.
+     * @param key
+     * @return node that matches key
+     */
+    public Node getNode(int key){
+        if(this.size == 0){
+            return null;
+        }
+        if(this.size == 1){
+            if(head.key == key){
+                return head;
+            }
+            else{
+                return null;
+            }
+        }
+        Node noder = head;
+        //noder.next = this.head.next;
+        //noder.previous = this.head.previous;
+        if(this.head.key == key) {
+            return this.head;
+        }
+        else {
+            while (noder.previous != null) {
+                noder = noder.previous;
+                if (noder.key == key) {
+                    moveNodeToHead(noder);
+                    return noder;
+                }
+                }
+            }
+            if (noder.key == key) {
+                moveNodeToHead(noder);
+                return noder;
+            } else {
+                return null;
+            }
+        }
+
+    /**
+     * Move the passed in node to the head position.
+     * @param node
+     */
+    public void moveNodeToHead(Node node){
+        if(this.head == node){
+            return;
+        }
+        if(this.tail == node){
+            tail.next.previous = null;
+            tail = tail.next;
+            head.next = node;
+            node.previous = head;
+            head = node;
+            return;
+        }
+        node.previous.next = node.next;
+        node.next.previous = node.previous;
+        head.next = node;
+        node.previous = head;
+        head = node;
+    }
+
+    public static void main(String[] args) {
+        //LRULinkedList list = new LRULinkedList(5);
+        //list.add(1, 1);
+        //list.add(2, 2);
+        //list.getNode(2);
+        //list.add(3, 3);
+        //list.add(4, 7);
+        //list.getNode(3);
+        //list.add(6, 7);
+        //list.add(22, 34);
+        //System.out.println(list.size);
+        //list.add(33,33);
+        //System.out.println(list.size);
+    }
+}
